@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../components/Layout/Layout'
-import KubesealDashboard from './KubesealDashboard/KubesealDashboard'
+import Layout from './components/Layout/Layout'
+import KubesealDashboard from './containers/KubesealDashboard/KubesealDashboard'
 import classes from './App.module.css'
 
 function App() {

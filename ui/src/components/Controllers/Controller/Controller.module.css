@@ -1,0 +1,88 @@
+@keyframes masuperanimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.Controller {
+  border: 1px solid #29323c;
+  margin: 5px 5px 5px 0px;
+  width: 400px;
+  height: 200px;
+  border-radius: 4px;
+  display: inline-block;
+  animation: masuperanimation 2s;
+}
+
+.Controller:hover {
+  box-shadow: 0px -1px 1px 2px #fd746c;
+}
+
+.Controller .Header {
+  position: relative;
+  background: #485563; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #29323c,
+    #485563
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #29323c,
+    #485563
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  /* background: #fd746c; /* fallback for old browsers
+  background: -webkit-linear-gradient(
+    to right,
+    #ff9068,
+    #fd746c
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  /* background: linear-gradient(
+    to right,
+    #ff9068,
+    #fd746c
+  ); */
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+}
+
+.Status {
+  top: 0;
+  left: 0;
+  margin: 5px;
+  position: absolute;
+  background: rgba(61, 199, 145, 0.3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  /* transform: translate(-50%, 50%); */
+}
+
+.Controller .Labels {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  margin-top: 5px;
+  padding: 10px 5px;
+  font-size: 12px;
+  color: black;
+}
+
+.Controller .Body {
+}
+
+.Controller img {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+
+.Controller .Labels p {
+  margin-top: 0;
+  margin-bottom: 0;
+}

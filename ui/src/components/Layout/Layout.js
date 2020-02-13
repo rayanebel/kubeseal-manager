@@ -1,9 +1,10 @@
 import React from 'react';
+import Toolbar from './Toolbar/Toolbar';
 
 const layout = (props) => {
     return (
         <div>
-            <p>Toolbar</p>
+            <Toolbar />
             {props.children}
         </div>
     );
