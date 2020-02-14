@@ -3,18 +3,23 @@ import classes from './Controller.module.css'
 import { FaHeart, FaHeartBroken } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 import logo from './logo.png'
+import Button from '../Button/Button'
 
 const controller = props => {
-  console.log(props)
+  let statusClass = classes.StatusOK
+  if (!props.controller.status) {
+    statusClass = classes.StatusNOK
+  }
+
   return (
     <div className={classes.Controller}>
       <div className={classes.Header}>
         <span>
-          <img src={logo} alt="" width="50" height="50" />
+          <img src={logo} alt="" width="30" height="30" />
           {props.controller.serviceName}
         </span>
 
-        <div className={classes.Status}>
+        <div className={statusClass}>
           {props.controller.status ? (
             <IconContext.Provider
               value={{ style: { color: '#3dc791' }, size: '10px' }}
@@ -34,6 +39,7 @@ const controller = props => {
           <p>Service Name: {props.controller.serviceName}</p>
           <p>Namespace: {props.controller.namespace}</p>
         </div>
+        <Button>Submit</Button>
       </div>
     </div>
   )

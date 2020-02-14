@@ -1,4 +1,4 @@
-@keyframes masuperanimation {
+@keyframes fadein {
   0% {
     opacity: 0;
   }
@@ -8,51 +8,56 @@
   }
 }
 
+@keyframes beatHeart {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.5);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .Controller {
-  border: 1px solid #29323c;
   margin: 5px 5px 5px 0px;
   width: 400px;
-  height: 200px;
-  border-radius: 4px;
   display: inline-block;
-  animation: masuperanimation 2s;
+  animation: fadein 2s;
+  border-radius: 5px;
 }
 
 .Controller:hover {
-  box-shadow: 0px -1px 1px 2px #fd746c;
+  box-shadow: 0px -1px 1px 2px #f2c94c;
 }
 
 .Controller .Header {
+  border-radius: 5px 5px 0px 0px;
   position: relative;
-  background: #485563; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #29323c,
-    #485563
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: rgb(176, 196, 201);
   background: linear-gradient(
-    to right,
-    #29323c,
-    #485563
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  /* background: #fd746c; /* fallback for old browsers
-  background: -webkit-linear-gradient(
-    to right,
-    #ff9068,
-    #fd746c
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  /* background: linear-gradient(
-    to right,
-    #ff9068,
-    #fd746c
-  ); */
+    90deg,
+    rgba(220, 227, 228, 1) 100%,
+    rgba(176, 196, 201, 1) 0%
+  );
+  /* background: #f2994a;
+  background: -webkit-linear-gradient(to right, #f2c94c, #f2994a);
+  background: linear-gradient(to right, #f2c94c, #f2994a); */
+
   height: 100px;
   text-align: center;
   line-height: 100px;
-  color: white;
+  color: black;
 }
 
-.Status {
+.StatusOK {
   top: 0;
   left: 0;
   margin: 5px;
@@ -65,16 +70,36 @@
   /* transform: translate(-50%, 50%); */
 }
 
+.StatusNOK {
+  top: 0;
+  left: 0;
+  margin: 5px;
+  position: absolute;
+  background: rgba(226, 79, 79, 0.3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  /* transform: translate(-50%, 50%); */
+}
+
+.StatusOK svg,
+.StatusNOK svg {
+  animation: beatHeart 1s infinite;
+}
+
 .Controller .Labels {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  margin-top: 5px;
   padding: 10px 5px;
   font-size: 12px;
   color: black;
 }
 
-.Controller .Body {
+.Body {
+  border-radius: 0px 0px 5px 5px;
+  background-color: white;
+  padding: 15px 15px 15px 5px;
 }
 
 .Controller img {

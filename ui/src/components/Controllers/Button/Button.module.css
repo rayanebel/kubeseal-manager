@@ -1,0 +1,51 @@
+.Container {
+  text-align: right;
+}
+
+.Button {
+  position: relative;
+  border-radius: 5px;
+  background: rgb(176, 196, 201);
+  background: linear-gradient(
+    90deg,
+    rgba(176, 196, 201, 1) 0%,
+    rgba(220, 227, 228, 1) 100%
+  );
+  /* background-color: #f29d0b; */
+  min-width: 100px;
+  padding-right: 20px;
+  padding-left: 70px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: black;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+.Button:hover {
+  border: 1px solid #f29d0b;
+}
+
+.Button svg {
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: -50px;
+  transform: translate(-50%, -50%);
+}
+
+.Button::before {
+  position: absolute;
+  content: '';
+  background: #fff;
+  color: #fcad26;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 50px;
+  border: 1px solid #b0c4c9;
+  border-radius: 5px 0px 0px 5px;
+  box-sizing: border-box;
+}
