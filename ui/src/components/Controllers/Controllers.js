@@ -18,9 +18,12 @@ const controllers = props => {
   // })
 
   const controllersList = props.controllers.map(controller => {
+    const globalStatus = controller.items.every(function (e) {
+      return e.status === true;
+    });
     return (
       <div key={controller.namespace}>
-        <Title title={controller.namespace} />
+        <Title globalStatus={globalStatus} title={controller.namespace} />
 
         {controller.items.map((item, i) => {
           return <Controller key={i} controller={item} />

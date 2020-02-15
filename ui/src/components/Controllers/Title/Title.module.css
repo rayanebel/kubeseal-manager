@@ -1,4 +1,31 @@
 .Title {
   text-transform: capitalize;
   color: white;
+  display: inline-block;
+}
+
+.StatusOK {
+  display: inline-block;
+  text-align: center;
+  margin: 5px;
+  background: rgba(61, 199, 145, 0.3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  /* transform: translate(-50%, 50%); */
+}
+
+.StatusNOK {
+  display: inline-block;
+  text-align: center;
+  top: 0;
+  left: 0;
+  margin: 5px;
+  background: rgba(226, 79, 79, 0.3);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  /* transform: translate(-50%, 50%); */
 }
