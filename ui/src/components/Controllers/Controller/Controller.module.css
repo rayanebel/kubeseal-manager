@@ -41,12 +41,14 @@
 .Controller .Header {
   border-radius: 5px 5px 0px 0px;
   position: relative;
-  background: rgb(176, 196, 201);
+  background: rgb(10,42,102);
+  background: linear-gradient(90deg, rgba(10,42,102,1) 0%, rgba(22,88,130,0.8071603641456583) 100%);
+  /* background: rgb(176, 196, 201);
   background: linear-gradient(
     90deg,
     rgba(220, 227, 228, 1) 100%,
     rgba(176, 196, 201, 1) 0%
-  );
+  ); */
   /* background: #f2994a;
   background: -webkit-linear-gradient(to right, #f2c94c, #f2994a);
   background: linear-gradient(to right, #f2c94c, #f2994a); */
@@ -54,7 +56,8 @@
   height: 100px;
   text-align: center;
   line-height: 100px;
-  color: black;
+  /* color: black; */
+  color: white;
 }
 
 .StatusOK {

@@ -5,21 +5,26 @@
 
   height: 40px;
   color: white;
-  background: #485563; /* fallback for old browsers */
+  /* background: #485563;
   background: -webkit-linear-gradient(
     to right,
     #29323c,
     #485563
-  ); /* Chrome 10-25, Safari 5.1-6 */
+  );
   background: linear-gradient(
     to right,
     #29323c,
     #485563
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  ); */
+  background: rgb(7,111,226);
+  background: linear-gradient(90deg, rgba(7,111,226,1) 0%, rgba(38,159,225,1) 35%, rgba(17,192,206,1) 100%);
   text-align: center;
   margin-bottom: 10px;
   border-bottom: 2px solid;
-  border-image: linear-gradient(#f2c94c, #f2994a) 30;
+  border-image: linear-gradient(#fcd04b, #d7c68f) 30;
+  /* border-image: linear-gradient(#f2c94c, #f2994a) 30; */
+
+
 }
 
 .Toolbar img {

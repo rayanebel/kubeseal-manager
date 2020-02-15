@@ -7,12 +7,14 @@ const button = props => {
   return (
     <div className={classes.Container}>
       <button className={classes.Button}>
-        <IconContext.Provider
-          value={{ style: { color: '#FCD04B' }, size: '20px' }}
-        >
-          <FaUserSecret />
-        </IconContext.Provider>
-        Seal
+        <div className={classes.Icon}> 
+          <IconContext.Provider
+            value={{ style: { color: '#FCD04B' }, size: '20px' }}
+          >
+            <FaUserSecret />
+          </IconContext.Provider>
+        </div>
+        <span className={classes.Text}>Seal</span>
       </button>
     </div>
   )

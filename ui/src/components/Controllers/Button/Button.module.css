@@ -5,21 +5,23 @@
 .Button {
   position: relative;
   border-radius: 5px;
-  background: rgb(176, 196, 201);
+  background: rgb(10,42,102);
+  background: linear-gradient(90deg, rgba(10,42,102,1) 0%, rgba(22,88,130,0.8071603641456583) 100%);
+  /* background: rgb(176, 196, 201);
   background: linear-gradient(
     90deg,
     rgba(176, 196, 201, 1) 0%,
     rgba(220, 227, 228, 1) 100%
-  );
+  ); */
   /* background-color: #f29d0b; */
   min-width: 100px;
-  padding-right: 20px;
-  padding-left: 70px;
+/*   padding-right: 20px;
+  padding-left: 70px; */
   height: 30px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
-  color: black;
+  color: white;
   letter-spacing: 1px;
   outline: none;
 }
@@ -28,14 +30,32 @@
   border: 1px solid #f29d0b;
 }
 
-.Button svg {
+.Button .Icon:hover {
+  display: inline-block;
+  transform: translateX(0px);
+  transition: all 3s;
+
+}
+
+.Button .Icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  transform: translateX(-50px);
+}
+
+.Button .Text {
+
+}
+
+/* .Button svg {
   z-index: 2;
   position: absolute;
   top: 50%;
   left: -50px;
   transform: translate(-50%, -50%);
-}
-
+} */
+/* 
 .Button::before {
   position: absolute;
   content: '';
@@ -49,3 +69,4 @@
   border-radius: 5px 0px 0px 5px;
   box-sizing: border-box;
 }
+ */

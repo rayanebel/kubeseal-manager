@@ -2,7 +2,9 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  background: #485563;
+/*   background: #485563;
   background: -webkit-linear-gradient(to right, #29323c, #485563);
-  background: linear-gradient(to right, #29323c, #485563);
+  background: linear-gradient(to right, #29323c, #485563); */
+  background: rgb(7,111,226);
+  background: linear-gradient(90deg, rgba(7,111,226,1) 0%, rgba(38,159,225,1) 35%, rgba(17,192,206,1) 100%);
 }
