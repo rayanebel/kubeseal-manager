@@ -5,68 +5,43 @@
 .Button {
   position: relative;
   border-radius: 5px;
-  background: rgb(10,42,102);
-  background: linear-gradient(90deg, rgba(10,42,102,1) 0%, rgba(22,88,130,0.8071603641456583) 100%);
-  /* background: rgb(176, 196, 201);
+  background: rgb(10, 42, 102);
   background: linear-gradient(
     90deg,
-    rgba(176, 196, 201, 1) 0%,
-    rgba(220, 227, 228, 1) 100%
-  ); */
-  /* background-color: #f29d0b; */
+    rgba(10, 42, 102, 1) 0%,
+    rgba(22, 88, 130, 0.8071603641456583) 100%
+  );
   min-width: 100px;
-/*   padding-right: 20px;
-  padding-left: 70px; */
-  height: 30px;
+  height: 35px;
   border: none;
   cursor: pointer;
   text-transform: uppercase;
   color: white;
   letter-spacing: 1px;
   outline: none;
+  overflow: hidden;
+  text-align: center;
 }
 
-.Button:hover {
-  border: 1px solid #f29d0b;
+.Button:hover .Icon {
+  left: 50%;
 }
 
-.Button .Icon:hover {
-  display: inline-block;
-  transform: translateX(0px);
-  transition: all 3s;
-
+.Button:hover .Text {
+  transform: translateX(150px);
 }
 
 .Button .Icon {
+  position: absolute;
   display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  transform: translateX(-50px);
+  left: -50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: ease-out 0.5s;
 }
 
 .Button .Text {
-
+  transform: translateX(0px);
+  display: inline-block;
+  transition: ease-out 0.5s;
 }
-
-/* .Button svg {
-  z-index: 2;
-  position: absolute;
-  top: 50%;
-  left: -50px;
-  transform: translate(-50%, -50%);
-} */
-/* 
-.Button::before {
-  position: absolute;
-  content: '';
-  background: #fff;
-  color: #fcad26;
-  height: 100%;
-  top: 0;
-  left: 0;
-  width: 50px;
-  border: 1px solid #b0c4c9;
-  border-radius: 5px 0px 0px 5px;
-  box-sizing: border-box;
-}
- */
