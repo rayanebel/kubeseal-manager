@@ -4,7 +4,6 @@ import { FaHeart, FaHeartBroken } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 
 const title = props => {
-
   let statusClass = classes.StatusOK
   if (!props.globalStatus) {
     statusClass = classes.StatusNOK
@@ -27,9 +26,7 @@ const title = props => {
       </div>
       <h4 className={classes.Title}>{props.title}</h4>
     </div>
-
-
-  );
+  )
 }
 
 export default title

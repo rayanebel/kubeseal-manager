@@ -1,44 +1,11 @@
 import React from 'react'
 import classes from './KubesealDashboard.module.css'
 import Controllers from '../../components/Controllers/Controllers.js'
-import Title from '../../components/UI/Title/Title'
+import ControllerFilters from '../../components/Controllers/ControllerFilters/ControllerFilters'
 
 class KubesealDashboard extends React.Component {
-  // state = {
-  //   controllers: {
-  //     default: [
-  //       {
-  //         serviceName: 'kubeseal-controller',
-  //         namespace: 'default',
-  //         status: true,
-  //       },
-  //       {
-  //         serviceName: 'kubeseal-controller-2',
-  //         namespace: 'default',
-  //         status: true,
-  //       },
-  //     ],
-  //     system: [
-  //       {
-  //         serviceName: 'kubeseal-controller',
-  //         namespace: 'system',
-  //         status: false,
-  //       },
-  //       {
-  //         serviceName: 'kubeseal-controller',
-  //         namespace: 'system',
-  //         status: true,
-  //       },
-  //       {
-  //         serviceName: 'kubeseal-controller',
-  //         namespace: 'system',
-  //         status: true,
-  //       },
-  //     ],
-  //   },
-  // }
-
   state = {
+    showSealModal: false,
     controllers: [
       {
         namespace: 'default',
@@ -75,14 +42,62 @@ class KubesealDashboard extends React.Component {
           },
         ],
       },
+      {
+        namespace: 'test',
+        items: [
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: false,
+          },
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: true,
+          },
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: true,
+          },
+        ],
+      },
+      {
+        namespace: 'cicd',
+        items: [
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: true,
+          },
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: true,
+          },
+          {
+            serviceName: 'kubeseal-controller',
+            namespace: 'system',
+            status: true,
+          },
+        ],
+      },
     ],
   }
 
+  //const filterOnchange
+
   render() {
-    console.log(this.state.controllers)
+    const filterNamespacesOptions = this.state.controllers.map(controller => {
+      return {
+        value: controller.namespace,
+        label: controller.namespace,
+      }
+    })
+
     return (
       <div className={classes.KubesealDashboard}>
-        {/* <Title>Dashboard</Title> */}
+        <ControllerFilters namespaces={filterNamespacesOptions} />
         <Controllers controllers={this.state.controllers} />
       </div>
     )

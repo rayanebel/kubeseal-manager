@@ -1,0 +1,40 @@
+.FilterMenu {
+  margin: 15px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid #c4bcbc;
+  width: 95%;
+  min-height: 50px;
+  padding: 15px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.FilterTitle svg,
+.FilterTitle span {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.FilterBox {
+  margin: 10px 15px 15px 0px;
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 100px;
+}
+
+.FilterBox input {
+  margin: 0;
+  margin-right: 5px;
+}
+
+.FilterLabels {
+  font-size: 12px;
+  font-weight: normal;
+}
+.NamespaceSelectBox {
+  margin-top: 5px;
+  width: 300px;
+  font-weight: normal;
+}
