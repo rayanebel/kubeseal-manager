@@ -1,6 +1,18 @@
 .Controllers {
   position: relative;
-  margin: 15px;
+  /* margin: 15px; */
+}
+
+.ControllerBoxGrey {
+  background-color: #f1f2f6;
+  min-height: 300px;
+  padding: 10px;
+}
+
+.ControllerBoxDefault {
+  background-color: white;
+  min-height: 300px;
+  padding: 10px;
 }
 
 .ControllerSeparator {

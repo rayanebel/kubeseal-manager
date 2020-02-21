@@ -7,7 +7,7 @@ import Button from '../Button/Button'
 
 const controller = props => {
   let statusClass = classes.StatusOK
-  if (!props.controller.status) {
+  if (props.controller.status === 'failed') {
     statusClass = classes.StatusNOK
   }
 
@@ -20,7 +20,7 @@ const controller = props => {
         </span>
 
         <div className={statusClass}>
-          {props.controller.status ? (
+          {props.controller.status === 'running' ? (
             <IconContext.Provider
               value={{ style: { color: '#3dc791' }, size: '10px' }}
             >

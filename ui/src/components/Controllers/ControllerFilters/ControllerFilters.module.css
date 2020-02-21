@@ -1,10 +1,20 @@
+.Filter {
+  background: rgb(10, 42, 102);
+  background: linear-gradient(
+    90deg,
+    rgba(10, 42, 102, 1) 0%,
+    rgba(22, 88, 130, 0.8071603641456583) 100%
+  );
+  padding: 15px;
+  min-height: 60px;
+}
+
 .FilterMenu {
-  margin: 15px;
   border-radius: 5px;
   background-color: white;
   border: 1px solid #c4bcbc;
-  width: 95%;
-  min-height: 50px;
+  width: 300px;
+  min-height: 20px;
   padding: 15px;
   font-size: 15px;
   font-weight: bold;
