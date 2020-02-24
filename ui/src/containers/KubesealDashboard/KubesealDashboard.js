@@ -3,7 +3,10 @@ import classes from './KubesealDashboard.module.css'
 import Controllers from '../../components/Controllers/Controllers.js'
 import ControllerFilters from '../../components/Controllers/ControllerFilters/ControllerFilters'
 
+// Rewrite this into function and use useState
+// Rename this component to ControllerDashBoard
 class KubesealDashboard extends React.Component {
+  // Create multiple state using useState: Namespacefilters, StatusFilters, controllers, filteredControllers, ShowControllerContainer.
   state = {
     filters: {
       namespaces: [],
@@ -93,7 +96,9 @@ class KubesealDashboard extends React.Component {
     ],
   }
 
+  // Rename this
   collapseFiltersOnClickHandler = () => {
+    //Update into new syntax
     this.setState(prevState => {
       return {
         showControllerFilters: !prevState.showControllerFilters,
@@ -141,11 +146,13 @@ class KubesealDashboard extends React.Component {
       })
     }
 
+    //Update into new syntax
     this.setState({
       filteredControllers: filteredControllers,
     })
   }
 
+  //Update into new syntax
   updateNamespaceFilters = (value, action) => {
     let namespaceFilters = []
 
@@ -155,6 +162,7 @@ class KubesealDashboard extends React.Component {
       })
     }
 
+    //Update into new syntax
     this.setState(
       function(prevState) {
         return {
@@ -165,6 +173,7 @@ class KubesealDashboard extends React.Component {
     )
   }
 
+  //Update into new syntax
   updateStatusFilters = (name, value) => {
     this.setState(
       function(prevState) {
@@ -181,6 +190,7 @@ class KubesealDashboard extends React.Component {
     )
   }
 
+  // Transform this to function syntax
   render() {
     const filterNamespacesOptions = this.state.controllers.map(controller => {
       return {
