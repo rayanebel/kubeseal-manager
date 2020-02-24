@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Controller.module.css'
 import { FaHeart, FaHeartBroken } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
-import logo from './logo.png'
+import logo from '../../../assets/images/logo.png'
 import Button from '../Button/Button'
 
 const controller = props => {

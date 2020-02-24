@@ -1,6 +1,6 @@
 import React from 'react'
 import classes from './Toolbar.module.css'
-import Logo from './logo.png'
+import Logo from '../../../assets/images/logo.png'
 
 const toolbar = props => {
   return (
