@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import classes from './Dashboard.module.css'
 import Controllers from '../../components/Controllers/Controllers.js'
 import ControllerFilters from '../../components/Controllers/ControllerFilters/ControllerFilters'
+import axios from 'axios'
 
 const fixedControllers = [
   {
@@ -47,9 +48,21 @@ function Dashboard() {
     running: false,
     failed: false,
   })
-  const [controllers, setControllers] = useState(fixedControllers)
+  const [controllers, setControllers] = useState([])
   const [showControllerFilters, setShowControllerFilters] = useState(true)
   const [filteredControllers, setFilteredControllers] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:8000/api/controllers')
+      .then(response => {
+        console.log(response)
+        setControllers([...response.data.controllers])
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }, [])
 
   const filtersOnchangeHandler = useCallback(() => {
     const controllersDump = JSON.parse(JSON.stringify(controllers))
@@ -77,7 +90,6 @@ function Dashboard() {
         controller.items = controller.items.filter(el => {
           return stateFilters.indexOf(el.status) > -1
         })
-
         return controller
       })
     }
@@ -86,12 +98,13 @@ function Dashboard() {
   }, [controllers, namespaceFilters, statusFilters])
 
   useEffect(() => {
+    console.log('OK')
     return filtersOnchangeHandler()
-  }, [statusFilters, filtersOnchangeHandler])
+  }, [statusFilters])
 
   useEffect(() => {
     return filtersOnchangeHandler()
-  }, [namespaceFilters, filtersOnchangeHandler])
+  }, [namespaceFilters])
 
   const getControllers = () => {
     return filteredControllers.length > 0 ? filteredControllers : controllers

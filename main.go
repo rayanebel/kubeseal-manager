@@ -39,7 +39,6 @@ func main() {
 
 	api := r.PathPrefix("/api").Subrouter()
 
-	//apiConfig := make(map[string]interface{})
 	apiManager := &internalapi.APIManager{
 		Config: internalapi.Config{},
 	}
@@ -61,8 +60,12 @@ func main() {
 		apiManager.Config.KubernetesClient = client
 	}
 
-	apiManager.Config.AllNamespaces = *allNamespaces
-	apiManager.Config.Namespaces = *namespaces
+	if *allNamespaces {
+		apiManager.Config.AllNamespaces = *allNamespaces
+		apiManager.Config.Namespaces = nil
+	} else {
+		apiManager.Config.Namespaces = *namespaces
+	}
 
 	api.HandleFunc("/controllers", apiManager.GetControllers).Methods("GET")
 	api.HandleFunc("/seal", apiManager.Seal).Methods("POST")

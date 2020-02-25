@@ -14,14 +14,15 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-const kubesealLabel = "app.kubernetes.io/instance=kubeseal"
+const kubesealLabel = "app.kubernetes.io/name=kubeseal"
 
 func (api *APIManager) GetControllers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Connection", "close")
 	defer r.Body.Close()
 
 	serviceList := &models.Controllers{}
-	serviceList.Controllers = make(map[string][]models.ControllerService)
+	serviceList.Controllers = []models.ControllerCollection{}
 
 	if !api.Config.AllNamespaces {
 		getControllerRestrictedNamespaced(api.Config.KubernetesClient, serviceList, api.Config.Namespaces)
@@ -83,11 +84,17 @@ func getControllerAllNamespaces(k8sclient *kube.KubernetesClient, serviceList *m
 		return
 	}
 
+	controllersByNamespace := make(map[string][]models.ControllerService)
+
 	for _, s := range services.Items {
 		service := models.ControllerService{}
 		service.Namespace = s.Namespace
 		service.Name = s.Name
-		service.Status = controllerServiceIsHealthy(k8sclient, s.Name, s.Namespace)
+		service.Status = "running"
+
+		if !controllerServiceIsHealthy(k8sclient, s.Name, s.Namespace) {
+			service.Status = "failed"
+		}
 		service.ServiceInternalURL = fmt.Sprintf("%s.%s.svc.cluster.local", s.Name, s.Namespace)
 
 		serviceEndpoints := getControllerFromService(k8sclient, s.Name, s.Namespace)
@@ -102,13 +109,19 @@ func getControllerAllNamespaces(k8sclient *kube.KubernetesClient, serviceList *m
 				service.Applications = append(service.Applications, app)
 			}
 		}
-		serviceList.Controllers[s.Namespace] = append(serviceList.Controllers[s.Namespace], service)
+		controllersByNamespace[s.Namespace] = append(controllersByNamespace[s.Namespace], service)
+	}
+	for namespace, controller := range controllersByNamespace {
+		collection := models.ControllerCollection{}
+		collection.Namespace = namespace
+		collection.Controllers = controller
+		serviceList.Controllers = append(serviceList.Controllers, collection)
 	}
 }
 
 func getControllerRestrictedNamespaced(k8sclient *kube.KubernetesClient, serviceList *models.Controllers, namespaces []string) {
 	var wg sync.WaitGroup
-	serviceChannel := make(chan models.ControllerService)
+	serviceChannel := make(chan models.ControllerCollection)
 	errorChannel := make(chan string)
 	notification := make(chan struct{})
 	done := make(chan struct{})
@@ -120,8 +133,8 @@ func getControllerRestrictedNamespaced(k8sclient *kube.KubernetesClient, service
 	go func() {
 		for {
 			select {
-			case service := <-serviceChannel:
-				serviceList.Controllers[service.Namespace] = append(serviceList.Controllers[service.Namespace], service)
+			case serviceCollection := <-serviceChannel:
+				serviceList.Controllers = append(serviceList.Controllers, serviceCollection)
 			case err := <-errorChannel:
 				log.WithFields(log.Fields{
 					"message": err,
@@ -143,6 +156,10 @@ func getControllerRestrictedNamespaced(k8sclient *kube.KubernetesClient, service
 		wg.Add(1)
 		go func(namespace string) {
 			services, err := k8sclient.GetServices(metav1.ListOptions{LabelSelector: kubesealLabel}, namespace)
+			controllerCollection := models.ControllerCollection{}
+			controllerCollection.Namespace = namespace
+			controllerCollection.Controllers = []models.ControllerService{}
+
 			if err != nil {
 				errorChannel <- err.Error()
 				return
@@ -152,7 +169,11 @@ func getControllerRestrictedNamespaced(k8sclient *kube.KubernetesClient, service
 				service := models.ControllerService{}
 				service.Namespace = s.Namespace
 				service.Name = s.Name
-				service.Status = controllerServiceIsHealthy(k8sclient, s.Name, s.Namespace)
+
+				service.Status = "running"
+				if !controllerServiceIsHealthy(k8sclient, s.Name, s.Namespace) {
+					service.Status = "failed"
+				}
 				service.ServiceInternalURL = fmt.Sprintf("%s.%s.svc.cluster.local", s.Name, s.Namespace)
 
 				serviceEndpoints := getControllerFromService(k8sclient, s.Name, s.Namespace)
@@ -167,8 +188,9 @@ func getControllerRestrictedNamespaced(k8sclient *kube.KubernetesClient, service
 						service.Applications = append(service.Applications, app)
 					}
 				}
-				serviceChannel <- service
+				controllerCollection.Controllers = append(controllerCollection.Controllers, service)
 			}
+			serviceChannel <- controllerCollection
 			wg.Done()
 		}(ns)
 	}

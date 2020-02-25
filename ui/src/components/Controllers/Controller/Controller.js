@@ -16,7 +16,7 @@ const controller = props => {
       <div className={classes.Header}>
         <span>
           <img src={logo} alt="" width="30" height="30" />
-          {props.controller.serviceName}
+          {props.controller.name}
         </span>
 
         <div className={statusClass}>
@@ -36,8 +36,15 @@ const controller = props => {
 
       <div className={classes.Body}>
         <div className={classes.Labels}>
-          <p>Service Name: {props.controller.serviceName}</p>
-          <p>Namespace: {props.controller.namespace}</p>
+          <p>
+            <strong>Service Name</strong>: {props.controller.name}
+          </p>
+          <p>
+            <strong>Namespace</strong>: {props.controller.namespace}
+          </p>
+          <p>
+            <strong>FQDN</strong>: {props.controller.service_url}
+          </p>
         </div>
         <Button>Submit</Button>
       </div>
