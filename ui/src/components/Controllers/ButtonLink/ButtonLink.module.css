@@ -1,9 +1,12 @@
 .Container {
   text-align: right;
+  margin-top: 10px;
 }
 
-.Button {
+.ButtonLink {
+  display: inline-block;
   position: relative;
+  border: none;
   border-radius: 5px;
   background: rgb(10, 42, 102);
   background: linear-gradient(
@@ -11,37 +14,36 @@
     rgba(10, 42, 102, 1) 0%,
     rgba(22, 88, 130, 0.8071603641456583) 100%
   );
-  min-width: 100px;
-  height: 35px;
-  border: none;
-  cursor: pointer;
+  padding: 10px 25px 10px 25px;
+  text-decoration: none;
   text-transform: uppercase;
-  color: white;
   letter-spacing: 1px;
-  outline: none;
-  overflow: hidden;
+  color: white;
   text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 12px;
 }
 
-.Button:hover .Icon {
+.ButtonLink:hover .Icon {
   left: 50%;
 }
 
-.Button:hover .Text {
+.ButtonLink:hover .Text {
   transform: translateX(150px);
 }
 
-.Button .Icon {
+.ButtonLink .Icon {
   position: absolute;
   display: inline-block;
   left: -50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: ease-out 0.5s;
+  transition: ease-out 0.3s;
 }
 
-.Button .Text {
+.ButtonLink .Text {
   transform: translateX(0px);
   display: inline-block;
-  transition: ease-out 0.5s;
+  transition: ease-out 0.3s;
 }

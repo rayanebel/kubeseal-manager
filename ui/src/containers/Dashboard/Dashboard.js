@@ -3,44 +3,8 @@ import classes from './Dashboard.module.css'
 import Controllers from '../../components/Controllers/Controllers.js'
 import ControllerFilters from '../../components/Controllers/ControllerFilters/ControllerFilters'
 import axios from 'axios'
-
-const fixedControllers = [
-  {
-    namespace: 'default',
-    items: [
-      {
-        serviceName: 'kubeseal-controller',
-        namespace: 'system',
-        status: 'running',
-      },
-      {
-        serviceName: 'kubeseal-controller-2',
-        namespace: 'default',
-        status: 'running',
-      },
-    ],
-  },
-  {
-    namespace: 'system',
-    items: [
-      {
-        serviceName: 'kubeseal-controller',
-        namespace: 'system',
-        status: 'failed',
-      },
-      {
-        serviceName: 'kubeseal-controller',
-        namespace: 'system',
-        status: 'running',
-      },
-      {
-        serviceName: 'kubeseal-controller',
-        namespace: 'system',
-        status: 'running',
-      },
-    ],
-  },
-]
+import { Route } from 'react-router-dom'
+import NewSealedSecret from '../NewSealedSecret/NewSealedSecret'
 
 function Dashboard() {
   const [namespaceFilters, setNamespaceFilters] = useState([])
@@ -49,19 +13,21 @@ function Dashboard() {
     failed: false,
   })
   const [controllers, setControllers] = useState([])
-  const [showControllerFilters, setShowControllerFilters] = useState(true)
+  const [showControllerFilters, setShowControllerFilters] = useState(false)
   const [filteredControllers, setFilteredControllers] = useState([])
 
+  const fetchControllers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/api/controllers')
+      console.log(response)
+      setControllers([...response.data.controllers])
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   useEffect(() => {
-    axios
-      .get('http://localhost:8000/api/controllers')
-      .then(response => {
-        console.log(response)
-        setControllers([...response.data.controllers])
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    fetchControllers()
   }, [])
 
   const filtersOnchangeHandler = useCallback(() => {
@@ -149,15 +115,24 @@ function Dashboard() {
   })
 
   return (
-    <div className={classes.KubesealDashboard}>
-      <ControllerFilters
-        namespaces={filterNamespacesOptions}
-        namespaceChangeHandler={updateNamespaceFilters}
-        statusChangeHandler={updateStatusFilters}
-        collapseFiltersOnclick={displayFiltersOnclick}
-        showControllerFilters={showControllerFilters}
+    <div className={classes.Dashboard}>
+      <Route
+        path="/"
+        exact
+        render={() => (
+          <>
+            <ControllerFilters
+              namespaces={filterNamespacesOptions}
+              namespaceChangeHandler={updateNamespaceFilters}
+              statusChangeHandler={updateStatusFilters}
+              collapseFiltersOnclick={displayFiltersOnclick}
+              showControllerFilters={showControllerFilters}
+            />
+            <Controllers controllers={getControllers()} />
+          </>
+        )}
       />
-      <Controllers controllers={getControllers()} />
+      <Route path="/form" component={NewSealedSecret}></Route>
     </div>
   )
 }

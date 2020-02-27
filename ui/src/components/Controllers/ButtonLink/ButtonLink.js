@@ -1,12 +1,13 @@
 import React from 'react'
-import classes from './Button.module.css'
+import classes from './ButtonLink.module.css'
 import { FaUserSecret } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
+import { Link } from 'react-router-dom'
 
-const button = props => {
+const buttonLink = props => {
   return (
     <div className={classes.Container}>
-      <button className={classes.Button}>
+      <Link to="/form" className={classes.ButtonLink}>
         <IconContext.Provider
           value={{
             style: { color: '#FCD04B' },
@@ -17,9 +18,9 @@ const button = props => {
           <FaUserSecret />
         </IconContext.Provider>
         <span className={classes.Text}>Seal</span>
-      </button>
+      </Link>
     </div>
   )
 }
 
-export default button
+export default buttonLink

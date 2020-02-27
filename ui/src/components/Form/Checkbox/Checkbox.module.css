@@ -1,0 +1,17 @@
+.RadioTitle {
+  font-size: 0.75rem;
+  color: #495057;
+  display: block;
+}
+
+.RadioContainer {
+}
+
+.RadioLabel {
+  margin-right: 10px;
+}
+
+.Radio {
+  border: none;
+  cursor: pointer;
+}

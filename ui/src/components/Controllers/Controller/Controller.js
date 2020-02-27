@@ -3,7 +3,7 @@ import classes from './Controller.module.css'
 import { FaHeart, FaHeartBroken } from 'react-icons/fa'
 import { IconContext } from 'react-icons'
 import logo from '../../../assets/images/logo.png'
-import Button from '../Button/Button'
+import ButtonLink from '../ButtonLink/ButtonLink'
 
 const controller = props => {
   let statusClass = classes.StatusOK
@@ -46,7 +46,7 @@ const controller = props => {
             <strong>FQDN</strong>: {props.controller.service_url}
           </p>
         </div>
-        <Button>Submit</Button>
+        <ButtonLink>Submit</ButtonLink>
       </div>
     </div>
   )
