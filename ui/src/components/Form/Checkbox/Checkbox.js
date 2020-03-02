@@ -4,9 +4,8 @@ import classes from './Checkbox.module.css'
 const checkbox = props => {
   const checkboxs = props.options.map(option => {
     return (
-      <label key={option} className={classes.RadioLabel}>
+      <label key={option} className={classes.Radio}>
         <input
-          className={classes.Radio}
           id={props.name}
           name={props.name}
           type="radio"
@@ -14,6 +13,7 @@ const checkbox = props => {
           placeholder={props.placeholder}
         />{' '}
         {option}
+        <span></span>
       </label>
     )
   })

@@ -3,7 +3,8 @@ import classes from './Input.module.css'
 
 const input = props => {
   return (
-    <div className={classes.InputContainer}>
+    <>
+      {' '}
       <label htmlFor={props.name} className={classes.InputLabel}>
         {props.title}
       </label>
@@ -14,8 +15,9 @@ const input = props => {
         type={props.type}
         value={props.value}
         placeholder={props.placeholder}
+        disabled={props.disabled ? 'disabled' : null}
       />
-    </div>
+    </>
   )
 }
 
